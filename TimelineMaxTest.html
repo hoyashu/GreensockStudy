@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>gsap 연습</title>
+	<script src="./js/jquery-3.5.1.min.js"></script>
+	<script src="./js/greensock/gsap.min.js"></script>
+</head>
+<style>
+
+</style>
+
+<body class="home">
+	<style>
+		div {
+			overflow: hidden;
+		}
+	</style>
+	<div>
+		<div class="main_visual_typo_rolling_item turn">안녕하세요!</div>
+	</div>
+	<div>
+		<div class="main_visual_typo_rolling_item tone">호야슈입니다.</div>
+	</div>
+	<script>
+		// main visual typo scramble
+		function main_visual_typo() {
+			// 
+			if (!$('body').hasClass('home')) {
+				return;
+			}
+
+			var tone_animation = new TimelineMax({
+				paused: true,
+				repeat: -1
+			});
+			var turn_animation = new TimelineMax({
+				paused: true,
+				repeat: -1
+			});
+
+			tone_animation.fromTo('.main_visual_typo_rolling_item.tone', .3, {
+					y: '0%',
+				}, {
+					y: '100%',
+					delay: 1,
+					ease: Power2.easeOut
+				})
+				.fromTo('.main_visual_typo_rolling_item.tone', .3, {
+					y: '-100%'
+				}, {
+					y: '0%',
+					delay: 1,
+					ease: Power2.easeOut
+				});
+
+			turn_animation.fromTo('.main_visual_typo_rolling_item.turn', .3, {
+					y: '-100%'
+				}, {
+					y: '0%',
+					delay: 1,
+					ease: Power2.easeOut
+				})
+				.fromTo('.main_visual_typo_rolling_item.turn', .3, {
+					y: '0%',
+				}, {
+					y: '100%',
+					delay: 1,
+					ease: Power2.easeOut
+				});
+
+			TweenMax.set('.main_visual_typo_rolling_item.tone', {
+				y: '0%'
+			});
+			TweenMax.set('.main_visual_typo_rolling_item.turn', {
+				y: '-100%'
+			});
+			TweenMax.set('.main_visual_typo_rolling_item', {
+				autoAlpha: 1
+			});
+
+			tone_animation.play();
+			turn_animation.play();
+
+		}
+		main_visual_typo()
+	</script>
+</body>
+
+</html>
